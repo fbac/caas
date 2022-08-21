@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-pod
+  namespace: workloads
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: test-pod
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: test-pod
+    spec:
+      containers:
+      - image: k8s.gcr.io/pause
+        name: pause
+      restartPolicy: Always
