@@ -6,6 +6,7 @@ Chaos as a Service for Kubernetes clusters
   - [cmd options](#cmd-options)
     - [Usage as binary](#usage-as-binary)
     - [Usage as container](#usage-as-container)
+    - [Usage in kubernetes](#usage-in-kubernetes)
   - [TODO](#todo)
 
 ## cmd options
@@ -33,6 +34,10 @@ Usage:
 - Place your kubeconfig in the root path of the repository
 - Run `make image`
 - Run `docker run fbac/chaoscmd:latest <OPTIONS>`
+
+### Usage in kubernetes
+
+- There's a cronjob in assets to run this in a cluster
 
 ## TODO
 

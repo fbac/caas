@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: chaoscmd
-            image: docker.io/fbac/chaoscmd
+            image: docker.io/fbac/chaoscmd:latest
             imagePullPolicy: IfNotPresent
             args:
             - -pods-to-kill=1
