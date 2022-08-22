@@ -4,7 +4,8 @@ Chaos as a Service for Kubernetes clusters
 
 - [chaoscmd](#chaoscmd)
   - [cmd options](#cmd-options)
-    - [Usage](#usage)
+    - [Usage as binary](#usage-as-binary)
+    - [Usage as container](#usage-as-container)
   - [TODO](#todo)
 
 ## cmd options
@@ -21,16 +22,23 @@ Usage:
         set maximum amount of pods to kill (default 1)
 ```
 
-### Usage
+### Usage as binary
 
   ```bash
   chaoscmd -kubeconfig=/path/to/kubeconfig -dry-run=false -pods-to-kill=4
   ```
 
+### Usage as container
+
+- Place your kubeconfig in the root path of the repository
+- Run `make image`
+- Run `docker run fbac/chaoscmd:latest <OPTIONS>`
+
 ## TODO
 
-- go test, go lint and go vet
-- Dockerfile to containerize app
-- Makefile target to build container
-- github workflow to build container and push to ghcr.io
-- Asset yaml yo run container as a cronjob in a Kubernetes cluster
+- Test suite: fmt, vet, lint and test using v1 api mocks
+- Critical change: Do not upload kubeconfig in the image, instead pass it inside a volume to the container
+- Change build logic: binary should be built inside the container
+- Authenticate to cluster using serviceAccount if running in kubernetes
+- Github Actions workflow to build container and push to ghcr.io as OCI object
+- Set flags as env vars and adapt the cronjob to use them
